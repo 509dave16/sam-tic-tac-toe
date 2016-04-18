@@ -1,6 +1,6 @@
-#SAM Redux Seed
+#SAM Tic Tac Toe
 
-This is a stubbed out port of Sam Redux sample implemented by [gunar](https://github.com/gunar/sam-redux "SAM Redux")
+This is a Tic Tac Toe implementation using the SAM. It based off of a Sam Redux sample implemented by [gunar](https://github.com/gunar/sam-redux "SAM Redux").
 
 #Understanding SAM
 
