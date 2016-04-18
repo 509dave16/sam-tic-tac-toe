@@ -4,4 +4,5 @@ state.ready = model => !model.gameType;
 state.waitForGuest = model => model.gameType === 'Host Game';
 state.joinAsGuest = model => model.gameType === 'Join Game';
 state.inGame = model => !model.turn && model.movesTaken !== 9;
+state.finished = model => model.movesTaken === 9;
 export default state;
