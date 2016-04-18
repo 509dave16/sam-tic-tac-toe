@@ -1,7 +1,7 @@
 {
-  "name": "sam-redux-seed",
+  "name": "sam-tic-tac-toe",
   "version": "0.0.1",
-  "description": "Seed for SAM Redux.",
+  "description": "SAM Tic Tac Toe",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,9 +13,11 @@
     "react",
     "redux",
     "sam",
-    "webpack"
+    "webpack",
+    "firebase"
   ],
   "dependencies": {
+    "firebase": "^2.4.2",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.5",
@@ -35,6 +37,7 @@
     "bootstrap-sass": "^3.3.6",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
+    "firebase-tools": "^2.2.1",
     "jquery": "^2.2.2",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.2",
