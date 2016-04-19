@@ -3,6 +3,6 @@ const state = {};
 state.ready = model => !model.gameType;
 state.waitForGuest = model => model.gameType === 'Host Game';
 state.joinAsGuest = model => model.gameType === 'Join Game';
-state.inGame = model => !model.turn && model.movesTaken !== 9;
-state.finished = model => model.movesTaken === 9;
+state.inGame = model => !model.turn && model.movesTaken !== Math.pow(model.size, 2);
+state.finished = model => model.movesTaken === Math.pow(model.size, 2);
 export default state;
