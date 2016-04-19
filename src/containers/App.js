@@ -19,7 +19,10 @@ const App = ({
 
   const setGameType = createAction('SET_GAMETYPE');
   const initializeGrid = createAction('INITIALIZE_GRID');
+  const markGrid = createAction('MARK_GRID');
   let gameTypeNode;
+  let markNode;
+  let cellIndexNode;
   const setGameTypeHandler = (event) => {
     present(setGameType(gameTypeNode.value));
   };
@@ -27,17 +30,28 @@ const App = ({
     present(initializeGrid(3));
   };
 
+  const markGridHandler = (event) => {
+    present(markGrid({
+     mark: markNode.value,
+     cellIndex: parseInt(cellIndexNode.value)
+    }));
+  };
+
   return (
    <div>
      <div><span>Game Type</span><input id='gameType' ref={node => gameTypeNode = node} type="text" /><button onClick={setGameTypeHandler}>Submit</button></div>
      <div><button onClick={initializeGridHandler}>Initialize Grid</button></div>
+     <div>
+       <span>Mark</span><input ref={node => markNode = node} />
+       <span>Cell Index</span><input ref={node => cellIndexNode = node} />
+       <button onClick={markGridHandler}>Mark Grid</button>
+     </div>
    </div>
   )
 };
 
 
 const mapStoreToProps = (store) => {
-  console.log(store);
   return {
     //TODO Map flags that correspond to Control States here as the Presentational Component should not have to know about Control States
     //TODO Map appropriate properties/values from the Model since the Presentational Component should not have access to everything
