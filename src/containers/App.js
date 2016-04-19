@@ -18,18 +18,19 @@ const App = ({
   //TODO Create JSX or hyperscript statements to build the State Representation
 
   const setGameType = createAction('SET_GAMETYPE');
+  const initializeGrid = createAction('INITIALIZE_GRID');
   let gameTypeNode;
-  const sampleHandler = (element) => {
+  const setGameTypeHandler = (event) => {
     present(setGameType(gameTypeNode.value));
+  };
+  const initializeGridHandler = (event) => {
+    present(initializeGrid(3));
   };
 
   return (
    <div>
-     <div><span>Game Type</span><input id='gameType' ref={node => gameTypeNode = node} type="text" /><button onClick={sampleHandler}>Submit</button></div>
-     <div><span>Game Status</span><input type="text" value={gameStatus} /><button>Submit</button></div>
-     <div><span>Player</span><input type="text" value={player} /><button>Submit</button></div>
-     <div><span>Session</span><input type="text" value={session} /><button>Submit</button></div>
-     <div><span>Moves Taken</span><input type="text" value={movesTaken} /><button>Submit</button></div>
+     <div><span>Game Type</span><input id='gameType' ref={node => gameTypeNode = node} type="text" /><button onClick={setGameTypeHandler}>Submit</button></div>
+     <div><button onClick={initializeGridHandler}>Initialize Grid</button></div>
    </div>
   )
 };
