@@ -1,20 +1,26 @@
-import {createAction, handleAction, handleActions} from 'redux-actions';
-import {generateSets} from './../utility/set-generator';
+import {generateSets, checkSets} from './helpers/setHelpers';
+import { handleActions } from 'redux-actions';
+const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, movesTaken: 0, initialized: false};
+
 
 const INITIALIZE_GRID = (state, action) => {
-  const size = action.payload;
+  const size = action.payload.size;
   const cells = [];
   const numOfCells = Math.pow(size, 2);
   for (let count = 0; count < numOfCells; count++) {
     cells.push('');
   }
 
-  return generateSets(cells, size);
+  const properties = generateSets(cells, size);
+  return Object.assign({}, state, properties, { initialized: true});
 };
 
-const MARK_GRID = (state, action) => {
+const LOCAL_MARK_GRID = (state, action) => {
   const cellIndex = action.payload.cellIndex;
   const mark = action.payload.mark;
+
+  const movesTaken = state.movesTaken + 1;
+  const {cellSets, initalized} = state;
 
   const cells = state.cells.map((value, index) => {
     if (index === cellIndex) {
@@ -23,7 +29,6 @@ const MARK_GRID = (state, action) => {
     return value;
   });
 
-  const {cellSets} = state;
   const setIndexes = cellSets[cellIndex];
   const sets = state.sets.map((obj, index) => {
     if (setIndexes.indexOf(index) !== -1 && (obj.mark === undefined || obj.mark === mark)) {
@@ -32,21 +37,16 @@ const MARK_GRID = (state, action) => {
     return obj;
   });
 
-  return { cells, sets, cellSets };
+  const finished = checkSets(sets);
+
+  return { cells, sets, cellSets, movesTaken, finished, initialized };
 
 };
 
-const handlers = {INITIALIZE_GRID, MARK_GRID};
+const DEFAULT_VALUE = (state, action) => defaultValues;
 
-const reducer = (state = {cells: [], sets: [], cellSets: []}, action) => {
-  for (let handlerKey in handlers) {
-    if (handlerKey === action.type) {
-      return handlers[handlerKey](state, action);
-    }
-  }
-  return state;
-};
-
+const actionHandlers = {INITIALIZE_GRID, LOCAL_MARK_GRID, DEFAULT_VALUE};
+const reducer = handleActions(actionHandlers, defaultValues);
 export {
   reducer
 };

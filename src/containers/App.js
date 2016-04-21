@@ -11,7 +11,6 @@ const App = ({
   gameStatus,
   player,
   session,
-  movesTaken,
   //TODO Control State Actions
   present,
 }) => {
@@ -19,7 +18,7 @@ const App = ({
 
   const setGameType = createAction('SET_GAMETYPE');
   const initializeGrid = createAction('INITIALIZE_GRID');
-  const markGrid = createAction('MARK_GRID');
+  const markGrid = createAction('LOCAL_MARK_GRID');
   let gameTypeNode;
   let markNode;
   let cellIndexNode;
@@ -27,7 +26,7 @@ const App = ({
     present(setGameType(gameTypeNode.value));
   };
   const initializeGridHandler = (event) => {
-    present(initializeGrid(3));
+    present(initializeGrid({size: 3}));
   };
 
   const markGridHandler = (event) => {
@@ -60,7 +59,6 @@ const mapStoreToProps = (store) => {
     'gameStatus': store.gameStatus,
     'player': store.player,
     'session': store.player,
-    'movesTaken': store.movesTaken
   };
 };
 

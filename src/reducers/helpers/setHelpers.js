@@ -9,6 +9,15 @@ function generateSets(cells, size) {
   return { sets, cellSets, cells };
 }
 
+function checkSets(sets, size) {
+  for(const cellSet of sets) {
+    if(cellSet.count === size) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function generateVerticalSets(cells, size, sets, cellSets) {
   for (let col = 0; col < size; col++) {
     const setIndex = addDefaultSet(sets);
@@ -62,6 +71,9 @@ function addDefaultSet(sets) {
   return sets.push({mark: undefined, count: 0}) - 1;
 }
 
+
+
 export {
-  generateSets
+  generateSets,
+  checkSets
 };
