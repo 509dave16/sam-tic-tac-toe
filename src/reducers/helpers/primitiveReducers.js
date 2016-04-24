@@ -2,7 +2,7 @@ import { createAction, handleAction, handleActions } from 'redux-actions';
 const primitiveReducer = (property, defaultValue, actionTypes) => {
   const actionHandlers = {};
   actionTypes.map((actionType) => {
-    actionHandlers[actionType] =  (state, action) => action.payload[property] ? action.payload[property] : state;
+    actionHandlers[actionType] =  (state, action) => action.payload[property] !== undefined ? action.payload[property] : state;
   });
   
   actionHandlers.DEFAULT_VALUE = (state, action) => defaultValue;
