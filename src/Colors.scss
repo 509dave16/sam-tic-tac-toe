@@ -1,0 +1,21 @@
+$blue_frost_light: #ABD3FF;
+$blue_frost: #7BB9FF;
+$blue_baby_dark: #1483FF;
+$blue: #00438E;
+$blue_navy: #00346D;
+
+@mixin color($color) {
+  color: $color;
+  &_bg {
+    background-color: $color;
+  }
+  &_bc {
+    border-color: $color;
+  }
+}
+
+.blue_frost_light { @include color($blue_frost_light); }
+.blue_frost { @include color($blue_frost); }
+.blue_baby_dark { @include color($blue_baby_dark); }
+.blue { @include color($blue); }
+.blue_navy { @include color($blue_navy); }

@@ -58,7 +58,7 @@ const mapStoreToProps = (store) => {
     'gameType': store.gameType,
     'gameStatus': store.gameStatus,
     'player': store.player,
-    'session': store.player,
+    'session': store.player
   };
 };
 

@@ -20,7 +20,7 @@ const submitSessionAction = (present, session) => {
   present(submitSession({session}));
 };
 
-export default {
+export {
   markGridAction,
   setGameTypeAction,
   quitAction,

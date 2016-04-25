@@ -1,0 +1,55 @@
+@import "./../../Colors";
+
+.selected {
+  background-color: $blue_navy;
+  color: $blue_frost_light;
+}
+
+.unselected {
+  color: $blue_frost;
+  background-color: $blue;
+  border-color: $blue_navy
+}
+
+.selectable {}
+.selection {}
+
+.list {
+  display: flex;
+  cursor: default;
+  margin-bottom: 0.75em;
+
+  //By default
+  & > .item {
+    @extend .unselected;
+  }
+
+  //Hovering before selection
+  &.selectable > .item:hover {
+    @extend .selected;
+  }
+
+  //Upon Selection
+  & > .item.selection {
+    @extend .selected;
+  }
+}
+
+.item {
+  font-size: 1.5em;
+  padding: 0.06125em 0.375em;
+  border-width: 1px;
+  border-style: solid;
+
+  &:first-of-type {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+
+  &:last-of-type {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+}
+
+
