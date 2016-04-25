@@ -1,0 +1,23 @@
+@import "./../../Colors.scss";
+
+.form {
+  margin-bottom: 0.5em;
+  & > * {
+    font-size: 1.25em;
+  }
+}
+
+.selected {
+  background-color: $blue_navy;
+  color: $blue_frost_light;
+}
+
+.unselected {
+  color: $blue_frost;
+  background-color: $blue;
+  border-color: $blue_navy
+}
+
+.unselected:hover {
+  @extend .selected;
+}

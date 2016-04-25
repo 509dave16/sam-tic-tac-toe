@@ -45,12 +45,12 @@ function actions() {
   const joinSession = createAction('JOIN_SESSION');
   const wrongSession = createAction('WRONG_SESSION');
   const joinSessionAction = (model, present) => {
-    const {session} = model;
+    const session = model.submittedSession;
     firebase.child('sessions').child(session).once('value', (snapshot) => {
       if (snapshot.exists()) {
-        firebaseSession = this.firebase.child('sessions').child(session);
+        firebaseSession = firebase.child('sessions').child(session);
         setupFirebaseHandlers(session,present);
-        present(joinSession({session , submittedSession: '', showJoinSessionForm: false, player: 'O'}));
+        present(joinSession({session , submittedSession: '', showJoinSessionForm: false, player: 'O', turnSwitch: true}));
       } else {
         present(wrongSession({submittedSession: ''}));
       }
@@ -60,7 +60,7 @@ function actions() {
   const localTurnSwitch = createAction('LOCAL_TURN_SWITCH');
   const localTurnSwitchAction = (model, present) => {
     const turn = switchTurn(model.turn);
-    present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`}));
+    present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`, turnSwitch: false}));
   };
 
   const onlineTurnSwitchAction = (model, present) => {
@@ -80,7 +80,7 @@ function actions() {
     firebaseSession.child('turn').on('value', (snapshot) => {
       const turn = snapshot.val();
       if (turn) {
-        present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`}));
+        present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`, turnSwitch: false }));
       }
     });
 

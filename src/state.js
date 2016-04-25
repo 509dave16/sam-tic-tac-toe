@@ -3,7 +3,7 @@ const state = {};
 state.initialize = model => !model.grid.initialized;
 state.ready = model => !model.gameType && model.grid.initialized;
 state.waitForGuest = model => model.gameType === 'Host Game' && !model.turn && !model.session;
-state.showJoinSessionForm = model => model.gameType === 'Join Game' && !model.showJoinSessionForm;
+state.showJoinSessionForm = model => model.gameType === 'Join Game' && !model.showJoinSessionForm && !model.session;
 state.joinAsGuest = model => model.gameType === 'Join Game' && !model.turn && model.submittedSession;
 state.localTakeTurn = model => model.gameType === 'Local Game' && model.move !== -1 && model.turn;
 state.onlineTakeTurn = model => model.gameType !== 'Local Game' && model.move !== -1 && model.turn;

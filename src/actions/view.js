@@ -16,8 +16,8 @@ const quitAction = (present) => {
 };
 
 const submitSession = createAction('SUBMIT_SESSION');
-const submitSessionAction = (present, session) => {
-  present(submitSession({session}));
+const submitSessionAction = (present, submittedSession) => {
+  present(submitSession({submittedSession}));
 };
 
 export {
