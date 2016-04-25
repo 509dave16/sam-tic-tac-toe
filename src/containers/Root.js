@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import GameType from './../components/container/GameType';
 import JoinGameForm from './../components/container/JoinGameForm';
+import StatusLabels from './../components/container/StatusLabels';
 import DevTools from './DevTools';
 
 
@@ -15,6 +16,7 @@ export default ({
   <div>
     <GameType present={present} />
     <JoinGameForm present={present} />
+    <StatusLabels />
     <DevTools />
   </div>
 </Provider>

@@ -1,0 +1,30 @@
+@import './../../Colors.scss';
+
+.key {
+  border-top-left-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+  background-color: $blue_navy;
+  color: $blue_frost_light;
+}
+
+.value {
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  color: $blue_frost_light;
+  background-color: $blue;
+}
+
+.pair {
+  display: flex;
+  margin-bottom: 0.75em;
+  font-size: 1.25em;
+  & > span {
+    padding: 0.375em 0.375em;
+    &:first-of-type {
+      @extend .key;
+    }
+    &:last-of-type {
+      @extend .value;
+    }
+  }
+}
