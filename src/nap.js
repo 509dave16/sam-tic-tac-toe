@@ -3,6 +3,7 @@ import napActions from './actions/nap';
 
 const controlStateToActions = {
   initialize: napActions.initializeGridAction,
+  startLocalGame: napActions.startLocalGameAction,
   hostSession: napActions.hostSessionAction,
   joinAsGuest: napActions.joinSessionAction,
   localTakeTurn: napActions.localMarkGridAction,

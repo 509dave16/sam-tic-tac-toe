@@ -119,6 +119,11 @@ function actions() {
     present(finished({gameStatus, done: true}));
   };
 
+  const startLocalGame = createAction('START_LOCAL_GAME');
+  const startLocalGameAction = (model, present) => {
+    present(startLocalGame({turnSwitch: true}));
+  };
+
   return {
     initializeGridAction,
     localMarkGridAction,
@@ -130,7 +135,8 @@ function actions() {
     onlineTurnSwitchAction,
     localQuitAction,
     onlineQuitAction,
-    finishedAction
+    finishedAction,
+    startLocalGameAction
   };
 }
 

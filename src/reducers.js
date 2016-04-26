@@ -16,7 +16,7 @@ const primitiveProperties = [
   {property: 'submittedSession', defaultValue: '', actionTypes: ['SUBMIT_SESSION', 'JOIN_SESSION', 'WRONG_SESSION']},
   {property: 'move', defaultValue: -1, actionTypes: ['MARK_GRID', 'LOCAL_MARK_GRID']},
   {property: 'turn', defaultValue: '', actionTypes: ['LOCAL_TURN_SWITCH']},
-  {property: 'turnSwitch', defaultValue: false, actionTypes: ['LOCAL_MARK_GRID', 'JOIN_SESSION', 'LOCAL_TURN_SWITCH']},
+  {property: 'turnSwitch', defaultValue: false, actionTypes: ['LOCAL_MARK_GRID', 'JOIN_SESSION', 'LOCAL_TURN_SWITCH', 'START_LOCAL_GAME']},
   {property: 'quit', defaultValue: false, actionTypes: ['QUIT']},
   {property: 'done', defaultValue: false, actionTypes: ['FINISHED']}
 ];
