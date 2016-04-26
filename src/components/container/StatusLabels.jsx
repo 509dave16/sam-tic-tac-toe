@@ -33,9 +33,9 @@ class StatusLabels extends Component {
 const mapStoreToProps = (store) => {
   return {
     'statuses' : {
-      'Session: ': store.session,
-      'Player': store.player,
-      'Game Status': store.gameStatus
+      'Session:': store.session,
+      'Player:': store.player,
+      'Game Status:': store.gameStatus
     }
   };
 };

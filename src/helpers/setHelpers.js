@@ -1,10 +1,10 @@
 function generateSets(cells, size) {
   const sets = [];
   const cellSets = [];
-  generateVerticalSets(cells, size, sets, cellSets);
-  generateHorizontalSets(cells, size, sets, cellSets);
-  generateTopLeftToBottomRightDiagonalSet(cells, size, sets, cellSets);
-  generateTopRightToBottomLeftDiagonalSet(cells, size, sets, cellSets);
+  generateVerticalSets(size, sets, cellSets);
+  generateHorizontalSets(size, sets, cellSets);
+  generateTopLeftToBottomRightDiagonalSet(size, sets, cellSets);
+  generateTopRightToBottomLeftDiagonalSet(size, sets, cellSets);
 
   return { sets, cellSets, cells };
 }
@@ -18,7 +18,7 @@ function checkSets(sets, size) {
   return false;
 }
 
-function generateVerticalSets(cells, size, sets, cellSets) {
+function generateVerticalSets(size, sets, cellSets) {
   for (let col = 0; col < size; col++) {
     const setIndex = addDefaultSet(sets);
     for (let row = 0; row < size; row++) {
@@ -31,7 +31,7 @@ function generateVerticalSets(cells, size, sets, cellSets) {
   }
 }
 
-function generateHorizontalSets(cells, size, sets, cellSets) {
+function generateHorizontalSets(size, sets, cellSets) {
   for (let row = 0; row < size; row++) {
     const setIndex = addDefaultSet(sets);
     for (let col = 0; col < size; col++) {
@@ -44,7 +44,7 @@ function generateHorizontalSets(cells, size, sets, cellSets) {
   }
 }
 
-function generateTopRightToBottomLeftDiagonalSet(cells, size, sets, cellSets) {
+function generateTopRightToBottomLeftDiagonalSet(size, sets, cellSets) {
   const setIndex = addDefaultSet(sets);
   const constant = size - 1;
   for (let count = 0; count < size; count++) {
@@ -56,7 +56,7 @@ function generateTopRightToBottomLeftDiagonalSet(cells, size, sets, cellSets) {
   }
 }
 
-function generateTopLeftToBottomRightDiagonalSet(cells, size, sets, cellSets) {
+function generateTopLeftToBottomRightDiagonalSet(size, sets, cellSets) {
   const setIndex = addDefaultSet(sets);
   for(let count = 0; count < size; count++) {
     const cellIndex = (size * count) + count;
@@ -70,8 +70,6 @@ function generateTopLeftToBottomRightDiagonalSet(cells, size, sets, cellSets) {
 function addDefaultSet(sets) {
   return sets.push({mark: undefined, count: 0}) - 1;
 }
-
-
 
 export {
   generateSets,

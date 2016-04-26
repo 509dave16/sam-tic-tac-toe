@@ -8,8 +8,7 @@ function actions() {
 
   const initializeGrid = createAction('INITIALIZE_GRID');
   const initializeGridAction = (model, present) => {
-    const {size} = model;
-    present(initializeGrid({size}));
+    present(initializeGrid({}));
   };
 
   const localMarkGrid = createAction('LOCAL_MARK_GRID');
@@ -130,6 +129,11 @@ function actions() {
 
 function switchTurn(turn) {
   return turn !== '' ? (turn === 'X' ? 'O' : 'X') : (Math.random() > 0.5 ? 'X' : 'O');
+}
+
+function sleep(milliSeconds){
+  var startTime = new Date().getTime(); // get the current time
+  while (new Date().getTime() < startTime + milliSeconds); // hog cpu
 }
 
 

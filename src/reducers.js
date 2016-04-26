@@ -17,8 +17,7 @@ const primitiveProperties = [
   {property: 'move', defaultValue: -1, actionTypes: ['MARK_GRID', 'LOCAL_MARK_GRID']},
   {property: 'turn', defaultValue: '', actionTypes: ['LOCAL_TURN_SWITCH']},
   {property: 'turnSwitch', defaultValue: false, actionTypes: ['LOCAL_MARK_GRID', 'JOIN_SESSION', 'LOCAL_TURN_SWITCH']},
-  {property: 'size', defaultValue: 3, actionTypes: []},
-  {property: 'quit', defaultValue: false, actionTypes: ['QUIT']}
+  {property: 'quit', defaultValue: false, actionTypes: ['QUIT']},
 ];
 
 const primitiveReducers = createPrimitiveReducers(primitiveProperties);

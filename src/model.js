@@ -11,6 +11,8 @@ const createModel = () => {
     nap(store.getState())(mergeStateToPresent);
   };
 
+  mergeStateToPresent({type:'FIRST_DISPATCH'});
+
   return {
     present: mergeStateToPresent,
     store

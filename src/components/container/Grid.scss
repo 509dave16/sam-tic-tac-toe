@@ -1,0 +1,57 @@
+@import './../../Colors.scss';
+
+$table-border-width: 0.2em;
+
+td
+{
+  color: $blue_frost_light;
+  font-size: 4em;
+  font-weight: 800;
+  width: 2em;
+  height: 2em;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+tr {
+
+  & > td {
+    border-color: $blue_frost_light;
+    border-bottom-width: $table-border-width;
+    border-top-width: $table-border-width;
+    &:first-of-type {
+      border-right-width: $table-border-width;
+      border-left-width: 0;
+    }
+
+    &:last-of-type {
+      border-right-width: 0;
+      border-left-width: $table-border-width;
+    }
+  }
+
+  &:first-of-type {
+    & > td {
+      border-color: $blue_frost_light;
+      border-bottom-width: $table-border-width;
+      border-top-width: 0;
+    }
+
+  }
+  
+  &:last-of-type {
+    & > td {
+      border-color: $blue_frost_light;
+      border-top-width: $table-border-width;
+      border-bottom-width: 0;
+    }
+  }
+}
+

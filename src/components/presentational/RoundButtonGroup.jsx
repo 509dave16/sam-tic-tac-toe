@@ -10,7 +10,17 @@ const RoundButtonGroup = ({
     <div className={`${styles.list} ${selected ? '' : styles.selectable}`}>
       {buttons.map((button, index) => {
         const selectedClass = selected === button ? styles.selection : '';
-        return <span className={`${styles.item} ${selectedClass}`} key={index} onClick={() => clickHandler(button)}>{button}</span>
+        return (
+        <span
+          className={`${styles.item}
+          ${selectedClass}`}
+          key={index}
+          onClick={(event) => {
+            clickHandler(button);
+          }}
+        >
+          {button}
+        </span>);
       })}
     </div>
   );

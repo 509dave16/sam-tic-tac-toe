@@ -8,7 +8,7 @@ import { setGameTypeAction } from './../../actions/view';
 class GameType extends Component {
   constructor(props) {
     super(props);
-    this.presentWrapper = this.presentWrapper.bind(this);
+    this.highOrderFunctionCreator = this.highOrderFunctionCreator.bind(this);
   }
 
   render() {
@@ -16,12 +16,12 @@ class GameType extends Component {
       <RoundButtonGroup
         selected={this.props.selected}
         buttons={['Host Game', 'Join Game', 'Local Game']}
-        clickHandler={this.presentWrapper()}
+        clickHandler={this.highOrderFunctionCreator()}
       />
     );
   }
 
-  presentWrapper() {
+  highOrderFunctionCreator() {
     return (gameType) => {
       setGameTypeAction(this.props.present, gameType);
     };

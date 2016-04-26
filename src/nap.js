@@ -3,7 +3,7 @@ import napActions from './actions/nap';
 
 const controlStateToActions = {
   initialize: napActions.initializeGridAction,
-  waitForGuest: napActions.hostSessionAction,
+  hostSession: napActions.hostSessionAction,
   joinAsGuest: napActions.joinSessionAction,
   localTakeTurn: napActions.localMarkGridAction,
   onlineTakeTurn: napActions.onlineMarkGridAction,
