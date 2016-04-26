@@ -113,6 +113,12 @@ function actions() {
     });
   };
 
+  const finished = createAction('FINISHED');
+  const finishedAction = (model, present) => {
+    const gameStatus = model.grid.winner ? `${model.turn} won!` : `It's a Draw!`;
+    present(finished({gameStatus, done: true}));
+  };
+
   return {
     initializeGridAction,
     localMarkGridAction,
@@ -123,7 +129,8 @@ function actions() {
     localTurnSwitchAction,
     onlineTurnSwitchAction,
     localQuitAction,
-    onlineQuitAction
+    onlineQuitAction,
+    finishedAction
   };
 }
 

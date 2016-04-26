@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import Cell from './../presentational/Cell';
 import { markGridAction } from './../../actions/view';
-import { highOrderFunctionCreator } from './../../helpers/highOrderHelpers';
+import { createHighOrderFunction } from './../../helpers/highOrderHelpers';
 import styles from './Grid.scss';
 
 class Grid extends Component {
@@ -32,7 +32,7 @@ class Grid extends Component {
         rowCells = [];
         rows.push(<tr key={rows.length}>{rowCells}</tr>);
       }
-      const handler = highOrderFunctionCreator(markGridAction, [this.props.present,cellIndex]);
+      const handler = createHighOrderFunction(markGridAction, [this.props.present,cellIndex]);
       rowCells.push(<Cell contents={cell} clickHandler={handler} key={cellIndex}/>);
     }
 

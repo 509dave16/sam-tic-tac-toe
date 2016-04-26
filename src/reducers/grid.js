@@ -1,6 +1,6 @@
 import {generateSets, checkSets} from './../helpers/setHelpers';
 import { handleActions } from 'redux-actions';
-const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, movesTaken: 0, initialized: false, size: 3};
+const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3};
 
 
 const INITIALIZE_GRID = (state, action) => {
@@ -36,9 +36,11 @@ const LOCAL_MARK_GRID = (state, action) => {
     return obj;
   });
 
-  const finished = checkSets(sets, size);
+  let winner = checkSets(sets, size);
+  let finished = winner;
+  finished = movesTaken == Math.pow(size, 2) && !winner ? true : finished;
 
-  return { cells, sets, cellSets, movesTaken, finished, initialized, size};
+  return { cells, sets, cellSets, movesTaken, finished, initialized, size, winner};
 
 };
 

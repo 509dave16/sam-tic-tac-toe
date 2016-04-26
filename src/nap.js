@@ -11,7 +11,8 @@ const controlStateToActions = {
   onlineTurnSwitch: napActions.onlineTurnSwitchAction,
   showJoinSessionForm: napActions.setShowJoinSessionFormAction,
   localQuit: napActions.localQuitAction,
-  onlineQuit: napActions.onlineQuitAction
+  onlineQuit: napActions.onlineQuitAction,
+  finished: napActions.finishedAction
 };
 
 const nap = model => {

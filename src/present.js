@@ -8,8 +8,9 @@ const present = (dataset, model) => {
 
     if(dataset.type === 'MARK_GRID' &&
       ((model.gameType !== 'Local Game' && model.player !== model.turn)
-      || (model.grid.cells[dataset.payload.move] !== '' )
-    )) { return;}
+      || (model.grid.cells[dataset.payload.move] !== ''))
+      && !model.grid.finished
+    ) { return;}
 
     dispatch(dataset);
   }

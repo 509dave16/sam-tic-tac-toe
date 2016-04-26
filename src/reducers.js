@@ -9,7 +9,7 @@ const reducers = {
 
 const primitiveProperties = [
   {property: 'gameType', defaultValue: '', actionTypes: ['SET_GAMETYPE']},
-  {property: 'gameStatus', defaultValue: 'Please select a game mode!', actionTypes: ['LOCAL_TURN_SWITCH','HOST_SESSION']},
+  {property: 'gameStatus', defaultValue: 'Please select a game mode!', actionTypes: ['LOCAL_TURN_SWITCH','HOST_SESSION', 'FINISHED']},
   {property: 'player', defaultValue: '', actionTypes: ['HOST_SESSION','JOIN_SESSION']},
   {property: 'session', defaultValue: '', actionTypes: ['HOST_SESSION', 'JOIN_SESSION']},
   {property: 'showJoinSessionForm', defaultValue: false, actionTypes: ['SET_SHOWJOINSESSIONFORM','JOIN_SESSION']},
@@ -18,6 +18,7 @@ const primitiveProperties = [
   {property: 'turn', defaultValue: '', actionTypes: ['LOCAL_TURN_SWITCH']},
   {property: 'turnSwitch', defaultValue: false, actionTypes: ['LOCAL_MARK_GRID', 'JOIN_SESSION', 'LOCAL_TURN_SWITCH']},
   {property: 'quit', defaultValue: false, actionTypes: ['QUIT']},
+  {property: 'done', defaultValue: false, actionTypes: ['FINISHED']}
 ];
 
 const primitiveReducers = createPrimitiveReducers(primitiveProperties);
