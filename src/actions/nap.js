@@ -67,6 +67,28 @@ function actions() {
     firebaseSession.child('turn').set(turn);
   };
 
+  const defaultValue = createAction('DEFAULT_VALUE');
+  const localQuitAction = (model, present) => {
+    present(defaultValue({}));
+  };
+  
+  const onlineQuitAction = (model, present) => {
+    firebaseSession.child('status').set('Quit', (error)=> {
+      firebase.child('sessions').child(session).remove();
+    });
+  };
+
+  const finished = createAction('FINISHED');
+  const finishedAction = (model, present) => {
+    const gameStatus = model.grid.winner ? `${model.turn} won!` : `It's a Draw!`;
+    present(finished({gameStatus, done: true}));
+  };
+
+  const startLocalGame = createAction('START_LOCAL_GAME');
+  const startLocalGameAction = (model, present) => {
+    present(startLocalGame({turnSwitch: true}));
+  };
+
   const setupFirebaseHandlers = (session, present) => {
     firebaseSession.child('move').on('value', (snapshot) => {
       const move = snapshot.val();
@@ -97,31 +119,15 @@ function actions() {
       }
     });
 
+    firebase.child('sessions').on('child_removed', (snapshot) => {
+      if(snapshot.key() === session) {
+        present(defaultValue({}));
+      }
+    });
+
     window.onbeforeunload = (e) => {
       firebase.child('sessions').child(session).remove();
     };
-  };
-
-  const defaultValue = createAction('DEFAULT_VALUE');
-  const localQuitAction = (model, present) => {
-    present(defaultValue({}));
-  };
-  
-  const onlineQuitAction = (model, present) => {
-    firebaseSession.child('status').set('Quit', (error)=> {
-      this.firebase.child('sessions').child(session).remove();
-    });
-  };
-
-  const finished = createAction('FINISHED');
-  const finishedAction = (model, present) => {
-    const gameStatus = model.grid.winner ? `${model.turn} won!` : `It's a Draw!`;
-    present(finished({gameStatus, done: true}));
-  };
-
-  const startLocalGame = createAction('START_LOCAL_GAME');
-  const startLocalGameAction = (model, present) => {
-    present(startLocalGame({turnSwitch: true}));
   };
 
   return {
