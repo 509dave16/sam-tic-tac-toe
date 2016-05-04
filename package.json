@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server -d --content-base public/ --inline --hot",
+    "start": "webpack-dev-server -d --content-base public/ --hot",
     "sync": "node browsersync.js",
     "build": "webpack -p"
   },
