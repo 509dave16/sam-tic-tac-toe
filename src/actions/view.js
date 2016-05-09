@@ -10,9 +10,14 @@ const setGameTypeAction = (present, gameType) => {
   present(setGameType({gameType}));
 };
 
-const guit = createAction('QUIT');
-const quitAction = (present) => {
-  present(quit({}));
+const initiateQuit = createAction('INITIATE_QUIT');
+const initiateQuitAction = (present) => {
+  present(initiateQuit({quit: true}));
+};
+
+const initiateRestart = createAction('INITIATE_RESTART');
+const initiateRestartAction = (present) => {
+  present(initiateRestart({restart: true}));
 };
 
 const submitSession = createAction('SUBMIT_SESSION');
@@ -23,6 +28,7 @@ const submitSessionAction = (present, submittedSession) => {
 export {
   markGridAction,
   setGameTypeAction,
-  quitAction,
-  submitSessionAction
+  submitSessionAction,
+  initiateQuitAction,
+  initiateRestartAction
 };

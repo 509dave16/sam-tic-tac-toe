@@ -67,14 +67,27 @@ function actions() {
     firebaseSession.child('turn').set(turn);
   };
 
-  const defaultValue = createAction('DEFAULT_VALUE');
+  const quit = createAction('QUIT');
   const localQuitAction = (model, present) => {
-    present(defaultValue({}));
+    present(quit({}));
   };
   
   const onlineQuitAction = (model, present) => {
     firebaseSession.child('status').set('Quit', (error)=> {
       firebase.child('sessions').child(session).remove();
+    });
+  };
+
+  const restart = createAction('RESTART');
+  const localRestartAction = (model, present) => {
+    present(restart({turnSwitch: true}));
+  };
+
+  const onlineRestartAction = (model, present) => {
+    firebaseSession.update({status: 'Restart', turn: null}, (error) => {
+      firebaseSession.update({status: 'Restarted'}, (error) => {
+        this.onlineTurnSwitch(Math.random() > 0.5 ? 'X' : 'O');
+      });
     });
   };
 
@@ -110,11 +123,11 @@ function actions() {
       if (status) {
         switch (status) {
           case('Quit'):
-            present(defaultValue({}));
+            present(quit({}));
             break;
-          // case('Restart'):
-          //   this.restart();
-          //   break;
+          case('Restart'):
+            present(restart({turnSwitch: true}));
+            break;
         }
       }
     });
@@ -141,6 +154,8 @@ function actions() {
     onlineTurnSwitchAction,
     localQuitAction,
     onlineQuitAction,
+    localRestartAction,
+    onlineRestartAction,
     finishedAction,
     startLocalGameAction
   };

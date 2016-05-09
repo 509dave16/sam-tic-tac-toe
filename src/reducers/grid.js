@@ -1,7 +1,5 @@
 import {generateSets, checkSets} from './../helpers/setHelpers';
 import { handleActions } from 'redux-actions';
-const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3};
-
 
 const INITIALIZE_GRID = (state, action) => {
   const cells = [];
@@ -44,9 +42,12 @@ const LOCAL_MARK_GRID = (state, action) => {
 
 };
 
-const DEFAULT_VALUE = (state, action) => defaultValues;
+const QUIT = (state, action) => defaultValues;
+const RESTART = (state, action) => defaultValues;
 
-const actionHandlers = {INITIALIZE_GRID, LOCAL_MARK_GRID, DEFAULT_VALUE};
+
+const actionHandlers = {INITIALIZE_GRID, LOCAL_MARK_GRID, QUIT, RESTART};
+const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3};
 const reducer = handleActions(actionHandlers, defaultValues);
 export {
   reducer

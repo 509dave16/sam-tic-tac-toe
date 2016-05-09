@@ -13,6 +13,8 @@ const controlStateToActions = {
   showJoinSessionForm: napActions.setShowJoinSessionFormAction,
   localQuit: napActions.localQuitAction,
   onlineQuit: napActions.onlineQuitAction,
+  localRestart: napActions.localRestartAction,
+  onlineRestart: napActions.onlineRestartAction,
   finished: napActions.finishedAction
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import App from './App';
 import GameType from './../components/container/GameType';
 import JoinGameForm from './../components/container/JoinGameForm';
 import StatusLabels from './../components/container/StatusLabels';
-import GameBoard from './../components/container/GameBoard'
+import GameBoard from './../components/container/GameBoard';
+import GameButtons from './../components/container/GameButtons';
 import DevTools from './DevTools';
 
 export default ({
@@ -18,6 +18,7 @@ export default ({
         <JoinGameForm present={present}/>
         <StatusLabels />
         <GameBoard present={present}/>
+        <GameButtons present={present}/>
         <DevTools />
       </div>
     </Provider>

@@ -9,8 +9,10 @@ state.localTakeTurn = model => model.gameType === 'Local Game' && model.move !==
 state.onlineTakeTurn = model => model.gameType !== 'Local Game' && model.move !== -1 && model.turn && !model.grid.finished;
 state.localTurnSwitch = model => model.gameType === 'Local Game' && model.turnSwitch && !model.grid.finished;
 state.onlineTurnSwitch = model => model.gameType !== 'Local Game' && model.turnSwitch && !model.grid.finished;
-state.localQuit = model => model.gameType === 'Local Game' && model.grid.finished && model.quit;
-state.onlineQuit = model => model.gameType !== 'Local Game' && model.grid.finished && model.quit;
+state.localQuit = model => model.gameType === 'Local Game' && model.quit;
+state.onlineQuit = model => model.gameType !== 'Local Game' && model.quit;
+state.localRestart = model => model.gameType === 'Local Game' && model.restart;
+state.onlineRestart = model => model.gameType !== 'Local Game' && model.restart;
 state.inGame = model => model.turn && !model.grid.finished;
 state.finished = model => model.grid.finished && !model.done;
 state.done = model => model.done;
