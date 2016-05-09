@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import app from './reducers.js'
 import present from './present.js'
 import nap from './nap.js'
-import DevTools from './containers/DevTools';
+import DevTools from './components/DevTools';
 
 const createModel = () => {
   const store = createStore(app, undefined, DevTools.instrument());

@@ -1,0 +1,92 @@
+@import './../Colors.scss';
+
+body {
+  margin: 0;
+  background-color: $blue_baby_dark;
+}
+
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+@media only screen and (max-width: 61.25em) {
+  html {
+    font-size: 28px;
+  }
+}
+
+.container {
+  width: 61.25em;//980px
+}
+
+.rowCentered {
+  display: flex;
+  justify-content: center;
+}
+
+.columnCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainHeader {
+  color: $blue_frost_light;
+  font-weight: 800;
+  padding: 0.3335em 0.67em;
+  background-color: $blue_navy;
+  border-top-left-radius: 0.20em;
+  border-bottom-right-radius: 0.20em;
+  border-bottom-left-radius: 0.75em;
+  border-top-right-radius: 0.75em;
+}
+
+@mixin scut-link-unstyled {
+  &, &:visited, &:hover, &:active {
+    font-style: inherit;
+    color: inherit;
+    background-color: transparent;
+    font-size: inherit;
+    text-decoration: none;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    font-family: inherit;
+  }
+}
+
+.icon {
+  background-repeat: no-repeat !important;
+  font-size: 16px;
+  height: 8em;
+  width: 8em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.firebaseIcon {
+  background: url("./../assets/images/firebase.png");
+  @extend .icon;
+}
+
+.reactIcon {
+  background: url("./../assets/images/react.png");
+  @extend .icon;
+}
+
+.reduxIcon {
+  background: url("./../assets/images/redux.png");
+  @extend .icon;
+}
+
+.attributionFooter {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: $blue_frost_light;
+}
+
+.attributionFooter > a {
+  @include scut-link-unstyled;
+}

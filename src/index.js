@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 
 import model from './model'
 
-import Root from './containers/Root';
+import Game from './components/Game';
 
 render(
-  <Root store={model.store} present={model.present} />,
+  <Game store={model.store} present={model.present} />,
   document.getElementById('root')
 );
