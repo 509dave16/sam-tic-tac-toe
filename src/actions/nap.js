@@ -86,7 +86,6 @@ function actions() {
   const onlineRestartAction = (model, present) => {
     firebaseSession.update({status: 'Restart', turn: null}, (error) => {
       firebaseSession.update({status: 'Restarted'}, (error) => {
-        this.onlineTurnSwitch(Math.random() > 0.5 ? 'X' : 'O');
       });
     });
   };
