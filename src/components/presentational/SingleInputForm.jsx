@@ -16,6 +16,14 @@ class SingleInputForm extends Component {
 
   render() {
     return (
+      <div>
+        { this.props.show ? this.form() : '' }
+      </div>
+    );
+  }
+
+  form() {
+    return (
       <form className={`${styles.form}`}>
         <input  placeholder={this.defaultInputText} ref='text' type="text"/>
         <button className={`${styles.unselected}`} onClick={this.onClick}>{this.props.submitButtonText}</button>
@@ -25,6 +33,7 @@ class SingleInputForm extends Component {
 }
 
 SingleInputForm.propTypes = {
+  show: React.PropTypes.bool.isRequired,
   defaultInputText: React.PropTypes.string,
   submitButtonText: React.PropTypes.string,
   submitHandler: React.PropTypes.func.isRequired

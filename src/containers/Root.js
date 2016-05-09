@@ -4,7 +4,7 @@ import App from './App';
 import GameType from './../components/container/GameType';
 import JoinGameForm from './../components/container/JoinGameForm';
 import StatusLabels from './../components/container/StatusLabels';
-import Grid from './../components/container/Grid';
+import GameBoard from './../components/container/GameBoard'
 import DevTools from './DevTools';
 
 export default ({
@@ -14,10 +14,10 @@ export default ({
   return (
     <Provider store={store}>
       <div>
-        <GameType present={present}/>
+        <GameType present={present} buttons={['Host Game', 'Join Game', 'Local Game']}/>
         <JoinGameForm present={present}/>
         <StatusLabels />
-        <Grid present={present}/>
+        <GameBoard present={present}/>
         <DevTools />
       </div>
     </Provider>
