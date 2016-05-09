@@ -12,4 +12,9 @@ const LabelKeyValue = ({
   );
 };
 
+LabelKeyValue.propTypes = {
+  keyValue: React.PropTypes.string.isRequired,
+  value: React.PropTypes.string.isRequired
+};
+
 export default LabelKeyValue;
