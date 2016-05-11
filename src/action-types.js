@@ -1,37 +1,3 @@
-// export const INITIALIZE_GRID = 'INITIALIZE_GRID';
-// export const INITIATE_MARK_GRID = 'INITIATE_MARK_GRID';
-// export const MARK_GRID = 'MARK_GRID';
-// export const SET_GAME_TYPE = 'SET_GAME_TYPE';
-// export const START_LOCAL_GAME = 'START_LOCAL_GAME';
-// export const HOST_SESSION = 'HOST_SESSION';
-// export const SHOW_JOIN_SESSION_FORM = 'SHOW_JOIN_SESSION_FORM';
-// export const JOIN_SESSION = 'JOIN_SESSION';
-// export const WRONG_SESSION = 'WRONG_SESSION';
-// export const SUBMIT_SESSION = 'SUBMIT_SESSION';
-// export const TURN_SWITCH = 'TURN_SWITCH';
-// export const INITIATE_QUIT = 'INITIATE_QUIT';
-// export const INITIATE_RESTART = 'INITIATE_RESTART';
-// export const QUIT = 'QUIT';
-// export const RESTART = 'RESTART';
-// export const FINISHED = 'FINISHED';
-
-// export {
-//   INITIALIZE_GRID,
-//   INITIATE_MARK_GRID,
-//   MARK_GRID,
-//   SET_GAME_TYPE,
-//   START_LOCAL_GAME,
-//   HOST_SESSION,
-//   SHOW_JOIN_SESSION_FORM,
-//   JOIN_SESSION,
-//   WRONG_SESSION,
-//   TURN_SWITCH,
-//   INITIATE_QUIT,
-//   INITIATE_RESTART,
-//   QUIT,
-//   RESTART,
-//   FINISHED
-// };
 const types = {
   INITIALIZE_GRID: 'INITIALIZE_GRID',
   INITIATE_MARK_GRID: 'INITIATE_MARK_GRID',
