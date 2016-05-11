@@ -81,10 +81,11 @@ let actionCreatorConfigs = [{
 }, {
   name: 'joinSession',
   actionType: JOIN_SESSION,
-  defaultPayloadValues: {player: 'O', showJoinSessionForm, turnSwitch: true, session: undefined},
+  defaultPayloadValues: {player: 'O', submittedSession, showJoinSessionForm, turnSwitch: true, session: undefined},
   dynamicPayloadValues: (session) => {
     return {session}
   }
+  
 }, {
   name: 'wrongSession',
   actionType: WRONG_SESSION,

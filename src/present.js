@@ -6,7 +6,7 @@ const present = (dataset, model) => {
       return;
     }
 
-    if(dataset.type === 'MARK_GRID' &&
+    if(dataset.type === 'INITIATE_MARK_GRID' &&
       ((model.gameType !== 'Local Game' && model.player !== model.turn)
       || (model.grid.cells[dataset.payload.move] !== ''))
       && !model.grid.finished
