@@ -1,4 +1,3 @@
-import { createAction, handleAction, handleActions } from 'redux-actions';
 import mutations from './../mutations';
 import Firebase from 'firebase';
 
@@ -8,13 +7,10 @@ function actions() {
   const firebase = new Firebase("https://glowing-fire-9042.firebaseio.com/");
   let firebaseSession = undefined;
 
-  //const initializeGrid = createAction('INITIALIZE_GRID');
   const initializeGridAction = (model, present) => {
-    var blah = 1 + 1;
     present(intents.initializeGrid());
   };
 
-  //const localMarkGrid = createAction('LOCAL_MARK_GRID');
   const localMarkGridAction = (model, present) => {
     const cellIndex = model.move;
     const mark = model.turn;
@@ -27,8 +23,6 @@ function actions() {
     firebaseSession.child('move').set({cellIndex, mark});
   };
 
-
-  //const hostSession = createAction('HOST_SESSION');
   const hostSessionAction = (model, present) => {
     firebase.child('sessions').push({status: 'Yayy!'})
       .then((firebaseRef) => {
@@ -39,12 +33,10 @@ function actions() {
       });
   };
   
-  //const setShowJoinSessionForm = createAction('SET_SHOWJOINSESSIONFORM');
   const setShowJoinSessionFormAction = (model, present) => {
     present(intents.showJoinSessionForm());
   };
-  // const joinSession = createAction('JOIN_SESSION');
-  // const wrongSession = createAction('WRONG_SESSION');
+
   const joinSessionAction = (model, present) => {
     const session = model.submittedSession;
     firebase.child('sessions').child(session).once('value', (snapshot) => {
@@ -58,7 +50,6 @@ function actions() {
     });
   };
 
- // const localTurnSwitch = createAction('LOCAL_TURN_SWITCH');
   const localTurnSwitchAction = (model, present) => {
     const turn = switchTurn(model.turn);
     present(intents.turnSwitch(turn, `${turn}'s turn`));
@@ -69,7 +60,6 @@ function actions() {
     firebaseSession.child('turn').set(turn);
   };
 
-  //const quit = createAction('QUIT');
   const localQuitAction = (model, present) => {
     present(intents.quit());
   };
@@ -80,7 +70,6 @@ function actions() {
     });
   };
 
-  // const restart = createAction('RESTART');
   const localRestartAction = (model, present) => {
     present(intents.restart());
   };
@@ -92,13 +81,11 @@ function actions() {
     });
   };
 
-  // const finished = createAction('FINISHED');
   const finishedAction = (model, present) => {
     const gameStatus = model.grid.winner ? `${model.turn} won!` : `It's a Draw!`;
     present(intents.finished(gameStatus));
   };
 
-  //const startLocalGame = createAction('START_LOCAL_GAME');
   const startLocalGameAction = (model, present) => {
     present(intents.startLocalGame());
   };
