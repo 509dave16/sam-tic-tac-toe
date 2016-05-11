@@ -38,8 +38,6 @@ const setup = () => {
     };
   }
 
-
-// const primitiveReducers = createPrimitiveReducers(primitiveProperties);
   const assignmentReducers = createAssignmentReducers(obj.reducerConfigs);
   Object.assign(reducers, assignmentReducers);
 

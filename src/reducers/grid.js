@@ -7,13 +7,12 @@ const INITIALIZE_GRID = (state, action) => {
   for (let count = 0; count < numOfCells; count++) {
     cells.push('');
   }
-
+  
   const properties = generateSets(cells, state.size);
   return Object.assign({}, state, properties, { initialized: true });
 };
 
 const MARK_GRID = (state, action) => {
-  console.log(action);
   const cellIndex = action.payload.cellIndex;
   const mark = action.payload.mark;
 

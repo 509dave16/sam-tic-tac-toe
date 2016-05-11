@@ -5,8 +5,6 @@ import nap from './nap.js'
 import DevTools from './components/DevTools';
 
 const createModel = () => {
-  const blah = 1 + 1;
-  console.log(mutations);
   const reducer = mutations.reducers;
   const store = createStore(reducer, undefined, DevTools.instrument());
   const mergeStateToPresent = dataset => {
