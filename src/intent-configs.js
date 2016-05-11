@@ -1,4 +1,4 @@
-import actionTypes from './action-types.js'
+import intentTypes from './intent-types.js'
 const {
   INITIALIZE_GRID,
   INITIATE_MARK_GRID,
@@ -16,7 +16,7 @@ const {
   QUIT,
   RESTART,
   FINISHED
-} = actionTypes;
+} = intentTypes;
 
 import modelProperties from './model-properties.js';
 const {
@@ -41,46 +41,46 @@ const noDyamicValues = () => {
 
 let actionCreatorConfigs = [{
   name: 'initializeGrid',
-  actionType: INITIALIZE_GRID
+  intentType: INITIALIZE_GRID
 }, {
   name: 'initiateMarkGrid',
-  actionType: INITIATE_MARK_GRID,
+  intentType: INITIATE_MARK_GRID,
   defaultPayloadValues: {move: undefined},
   dynamicPayloadValues: (cellIndex) => {
     return {move: cellIndex};
   }
 }, {
   name: 'markGrid',
-  actionType: MARK_GRID,
+  intentType: MARK_GRID,
   defaultPayloadValues: {move, turnSwitch: true},
   dynamicPayloadValues: (cellIndex, mark) => {
     return {cellIndex, mark};
   }
 }, {
   name: 'setGameType',
-  actionType: SET_GAME_TYPE,
+  intentType: SET_GAME_TYPE,
   defaultPayloadValues: {gameType: undefined},
   dynamicPayloadValues: (gameType) => {
     return {gameType}
   }
 }, {
   name: 'startLocalGame',
-  actionType: START_LOCAL_GAME,
+  intentType: START_LOCAL_GAME,
   defaultPayloadValues: {turnSwitch: true}
 }, {
   name: 'hostSession',
-  actionType: HOST_SESSION,
+  intentType: HOST_SESSION,
   defaultPayloadValues: {player: 'X', gameStatus: 'Waiting for player to join game!', session: undefined},
   dynamicPayloadValues: (session) => {
     return {session}
   }
 }, {
   name: 'showJoinSessionForm',
-  actionType: SHOW_JOIN_SESSION_FORM,
+  intentType: SHOW_JOIN_SESSION_FORM,
   defaultPayloadValues: {showJoinSessionForm: true}
 }, {
   name: 'joinSession',
-  actionType: JOIN_SESSION,
+  intentType: JOIN_SESSION,
   defaultPayloadValues: {player: 'O', submittedSession, showJoinSessionForm, turnSwitch: true, session: undefined},
   dynamicPayloadValues: (session) => {
     return {session}
@@ -88,41 +88,41 @@ let actionCreatorConfigs = [{
   
 }, {
   name: 'wrongSession',
-  actionType: WRONG_SESSION,
+  intentType: WRONG_SESSION,
   defaultPayloadValues: {submittedSession: ''}
 }, {
   name: 'submitSession',
-  actionType: SUBMIT_SESSION,
+  intentType: SUBMIT_SESSION,
   defaultPayloadValues: {submittedSession: undefined},
   dynamicPayloadValues: (submittedSession) => {
     return {submittedSession}
   }
 }, {
   name: 'turnSwitch',
-  actionType: TURN_SWITCH,
+  intentType: TURN_SWITCH,
   defaultPayloadValues: {turn: undefined, gameStatus: undefined, turnSwitch},
   dynamicPayloadValues: (turn, gameStatus) => {
     return {turn, gameStatus}
   }
 }, {
   name: 'initiateQuit',
-  actionType: INITIATE_QUIT,
+  intentType: INITIATE_QUIT,
   defaultPayloadValues: {quit: true}
 }, {
   name: 'initiateRestart',
-  actionType: INITIATE_RESTART,
+  intentType: INITIATE_RESTART,
   defaultPayloadValues: {restart: true}
 }, {
   name: 'quit',
-  actionType: QUIT,
+  intentType: QUIT,
   defaultPayloadValues: modelProperties
 }, {
   name: 'restart',
-  actionType: RESTART,
+  intentType: RESTART,
   defaultPayloadValues: {move, turn, restart, done}
 }, {
   name: 'finished',
-  actionType: FINISHED,
+  intentType: FINISHED,
   defaultPayloadValues: {done: true, gameStatus: undefined},
   dynamicPayloadValues: (gameStatus) => {
     return {gameStatus}

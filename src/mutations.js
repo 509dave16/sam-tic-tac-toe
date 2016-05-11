@@ -1,48 +1,35 @@
 import {combineReducers} from 'redux';
-import {createAction, handleAction, handleActions} from 'redux-actions';
+import {createAction} from 'redux-actions';
 import {createAssignmentReducers} from './reducers/helpers/assignmentReducers';
 import {reducer as grid} from './reducers/grid';
-import actionCreatorConfigs from './action-creator-configs.js';
+import intentConfigs from './intent-configs.js';
 import modelProperties from './model-properties.js';
 
-
 const setup = () => {
-  const reducers = {
-    grid
-  };
-
-  const obj = setupActionCreatorsAndReducerConfigs(actionCreatorConfigs, modelProperties);
-  function setupActionCreatorsAndReducerConfigs (actionCreatorConfigs, modelProperties)
-  {
-    const reducerConfigs = {};
-    const actionCreators = {};
-    actionCreatorConfigs.map((creator) => {
-      const {name, actionType, defaultPayloadValues, dynamicPayloadValues} = creator;
-      //Determine assignment actions for each model property
-      for (const property in defaultPayloadValues) {
-        if (modelProperties.hasOwnProperty(property)) {
-          reducerConfigs[property] = reducerConfigs[property] ? reducerConfigs[property] : { actionTypes: [], defaultValue: modelProperties[property]};
-          reducerConfigs[property].actionTypes.push(actionType);
-        }
+  const reducerConfigs = {};
+  const intents = {};
+  intentConfigs.map((intent) => {
+    const {name, intentType, defaultPayloadValues, dynamicPayloadValues} = intent;
+    //Determine assignment actions for each model property
+    for (const property in defaultPayloadValues) {
+      if (modelProperties.hasOwnProperty(property)) {
+        reducerConfigs[property] = reducerConfigs[property] ? reducerConfigs[property] : { intentTypes: [], defaultValue: modelProperties[property]};
+        reducerConfigs[property].intentTypes.push(intentType);
       }
-      //Setup action creators
-      actionCreators[name] = createAction(actionType, (...args) => {
-        const payload = dynamicPayloadValues(...args);
-        return Object.assign({}, defaultPayloadValues, payload);
-      });
+    }
+
+    //Setup action intents
+    intents[name] = createAction(intentType, (...args) => {
+      const payload = dynamicPayloadValues(...args);
+      return Object.assign({}, defaultPayloadValues, payload);
     });
+  });
 
-    return {
-      reducerConfigs,
-      actionCreators
-    };
-  }
-
-  const assignmentReducers = createAssignmentReducers(obj.reducerConfigs);
-  Object.assign(reducers, assignmentReducers);
+  const assignmentReducers = createAssignmentReducers(reducerConfigs);
+  const reducers = Object.assign({ grid }, assignmentReducers);
 
   return {
-    intents: obj.actionCreators,
+    intents,
     reducers: combineReducers(reducers)
   }
 };
