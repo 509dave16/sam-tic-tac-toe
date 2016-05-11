@@ -1,4 +1,4 @@
-import {generateSets, checkSets} from './../helpers/setHelpers';
+import {generateSets, checkSets} from '../helpers/square-grid';
 import { handleActions } from 'redux-actions';
 
 const INITIALIZE_GRID = (state, action) => {
@@ -8,8 +8,8 @@ const INITIALIZE_GRID = (state, action) => {
     cells.push('');
   }
   
-  const properties = generateSets(cells, state.size);
-  return Object.assign({}, state, properties, { initialized: true });
+  const properties = generateSets(state.size);
+  return Object.assign({}, state, properties, { cells, initialized: true });
 };
 
 const MARK_GRID = (state, action) => {

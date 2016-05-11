@@ -1,4 +1,4 @@
-function generateSets(cells, size) {
+function generateSets(size) {
   const sets = [];
   const cellSets = [];
   generateVerticalSets(size, sets, cellSets);
@@ -6,7 +6,7 @@ function generateSets(cells, size) {
   generateTopLeftToBottomRightDiagonalSet(size, sets, cellSets);
   generateTopRightToBottomLeftDiagonalSet(size, sets, cellSets);
 
-  return { sets, cellSets, cells };
+  return { sets, cellSets };
 }
 
 function checkSets(sets, size) {
