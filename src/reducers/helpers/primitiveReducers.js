@@ -9,8 +9,6 @@ const primitiveReducer = (property, defaultValue, defaultValueActionTypes, actio
     actionHandlers[actionType] = (state, action) => defaultValue
   );
   
-  //actionHandlers.DEFAULT_VALUE = (state, action) => defaultValue;
-
   return handleActions(
     actionHandlers,
     defaultValue

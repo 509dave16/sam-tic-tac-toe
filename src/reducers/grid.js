@@ -12,7 +12,8 @@ const INITIALIZE_GRID = (state, action) => {
   return Object.assign({}, state, properties, { initialized: true });
 };
 
-const LOCAL_MARK_GRID = (state, action) => {
+const MARK_GRID = (state, action) => {
+  console.log(action);
   const cellIndex = action.payload.cellIndex;
   const mark = action.payload.mark;
 
@@ -46,7 +47,7 @@ const QUIT = (state, action) => defaultValues;
 const RESTART = (state, action) => defaultValues;
 
 
-const actionHandlers = {INITIALIZE_GRID, LOCAL_MARK_GRID, QUIT, RESTART};
+const actionHandlers = {INITIALIZE_GRID, MARK_GRID, QUIT, RESTART};
 const defaultValues = { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3};
 const reducer = handleActions(actionHandlers, defaultValues);
 export {
