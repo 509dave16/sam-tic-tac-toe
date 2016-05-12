@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import  mutations  from './model/mutations.js'
 import present from './model/present.js'
 import nap from './nap.js'

@@ -20,6 +20,7 @@ const {
 
 import modelProperties from '../model-properties.js';
 const {
+  grid,
   gameType,
   gameStatus,
   player,
@@ -37,8 +38,10 @@ const {
 let intentConfigs = [{
   name: 'initializeGrid',
   intentType: INITIALIZE_GRID,
-  payloadModelProperties: [],
-  payloadCreator: () => { return {}; }
+  payloadModelProperties: ['grid'],
+  payloadCreator: (grid) => {
+    return {grid};
+  }
 }, {
   name: 'initiateMarkGrid',
   intentType: INITIATE_MARK_GRID,
@@ -49,9 +52,9 @@ let intentConfigs = [{
 }, {
   name: 'markGrid',
   intentType: MARK_GRID,
-  payloadModelProperties: ['move', 'turnSwitch'],
-  payloadCreator: (cellIndex, mark) => {
-    return {move, turnSwitch: true, cellIndex, mark};
+  payloadModelProperties: ['move', 'turnSwitch', 'grid'],
+  payloadCreator: (grid) => {
+    return {grid, move, turnSwitch: true};
   }
 }, {
   name: 'setGameType',
@@ -134,9 +137,9 @@ let intentConfigs = [{
 }, {
   name: 'restart',
   intentType: RESTART,
-  payloadModelProperties: ['move', 'turn', 'restart', 'done'],
+  payloadModelProperties: ['move', 'turn', 'restart', 'done', 'grid'],
   payloadCreator: () => {
-    return {move, turn, restart, done };
+    return {move, turn, restart, done, grid};
   }
 }, {
   name: 'finished',

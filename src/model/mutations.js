@@ -1,7 +1,6 @@
 import {combineReducers} from 'redux';
 import {createAction} from 'redux-actions';
-import {createAssignmentReducers} from './reducers/helpers/assignmentReducers';
-import {reducer as grid} from './reducers/grid';
+import {createAssignmentReducers} from './helpers/assignmentReducers';
 import intentConfigs from './intents/intent-configs.js';
 import modelProperties from './model-properties.js';
 
@@ -25,11 +24,10 @@ const setup = () => {
   });
 
   const assignmentReducers = createAssignmentReducers(reducerConfigs);
-  const reducers = Object.assign({ grid }, assignmentReducers);
 
   return {
     intents,
-    reducers: combineReducers(reducers)
+    reducers: combineReducers(assignmentReducers)
   }
 };
 

@@ -1,4 +1,5 @@
 const properties = {
+  grid: { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3},
   gameType: '',
   gameStatus: 'Please select a game mode!',
   player: '',

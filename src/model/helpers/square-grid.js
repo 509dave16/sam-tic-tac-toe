@@ -1,3 +1,43 @@
+
+function generateSquareGrid(size) {
+  const cells = [];
+  const numOfCells = Math.pow(size, 2);
+  for (let count = 0; count < numOfCells; count++) {
+    cells.push('');
+  }
+
+  const properties = generateSets(size);
+  properties.cells = cells;
+  return properties;
+}
+
+function markGrid(grid, cellIndex, mark) {
+
+  const movesTaken = grid.movesTaken + 1;
+  const {cellSets, initialized, size} = grid;
+
+  const cells = grid.cells.map((value, index) => {
+    if (index === cellIndex) {
+      return mark;
+    }
+    return value;
+  });
+
+  const setIndexes = cellSets[cellIndex];
+  const sets = grid.sets.map((set, index) => {
+    if (setIndexes.indexOf(index) !== -1 && (set.mark === '' || set.mark === mark)) {
+      return {mark: mark, count: set.count + 1};
+    }
+    return set;
+  });
+
+  let winner = checkSets(sets, size);
+  let finished = winner;
+  finished = movesTaken === Math.pow(size, 2) && !winner ? true : finished;
+
+  return { cells, sets, cellSets, movesTaken, finished, initialized, size, winner};
+}
+
 function generateSets(size) {
   const sets = [];
   const cellSets = [];
@@ -68,10 +108,11 @@ function generateTopLeftToBottomRightDiagonalSet(size, sets, cellSets) {
 }
 
 function addDefaultSet(sets) {
-  return sets.push({mark: undefined, count: 0}) - 1;
+  return sets.push({mark: '', count: 0}) - 1;
 }
 
 export {
-  generateSets,
+  generateSquareGrid,
+  markGrid,
   checkSets
 };

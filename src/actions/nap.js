@@ -1,5 +1,6 @@
 import mutations from '../model/mutations';
 import Firebase from 'firebase';
+import {generateSquareGrid, markGrid} from '../model/helpers/square-grid';
 
 const intents = mutations.intents;
 
@@ -8,19 +9,22 @@ function actions() {
   let firebaseSession = undefined;
 
   const initializeGridAction = (model, present) => {
-    present(intents.initializeGrid());
+    const grid = generateSquareGrid(model.grid.size);
+    const finishedGrid = Object.assign({}, model.grid, grid, {initialized: true});
+    present(intents.initializeGrid(finishedGrid));
   };
 
   const localMarkGridAction = (model, present) => {
-    const cellIndex = model.move;
-    const mark = model.turn;
-    present(intents.markGrid(cellIndex, mark));
+    const { move, turn, grid } = model;
+    const updatedGrid = markGrid(grid, move, turn);
+    present(intents.markGrid(updatedGrid));
   };
 
   const onlineMarkGridAction = (model, present) => {
     const cellIndex = model.move;
     const mark = model.turn;
-    firebaseSession.child('move').set({cellIndex, mark});
+    const grid = model.grid;
+    firebaseSession.child('move').set({cellIndex, mark, grid});
   };
 
   const hostSessionAction = (model, present) => {
@@ -94,8 +98,9 @@ function actions() {
     firebaseSession.child('move').on('value', (snapshot) => {
       const move = snapshot.val();
       if (move) {
-        const {cellIndex, mark} = move;
-        present(intents.markGrid(cellIndex, mark));
+        const {cellIndex, mark, grid} = move;
+        const updatedGrid = markGrid(grid, cellIndex, mark);
+        present(intents.markGrid(updatedGrid));
       }
     });
 
