@@ -1,15 +1,21 @@
-[Summary](#summary)
-[Tersm](#terms)
+
 #SAM Tic Tac Toe
 
 This is a Tic Tac Toe implementation using the [SAM](http://sam.js.org/ "SAM") pattern along with React, Redux, Firebase, and Webpack. It is based off of a SAM Redux sample implemented by [gunar](https://github.com/gunar/sam-redux "SAM Redux").
+
+#Table Of Contents
+[Demo](#demo)
+- [Summary](#summary)
+- [Additional Enhancements](#additional-enhancements)
+- [Usage](#usage)
+- [Understanding SAM](#terms)
 
 #Demo
 ###[Click here for Demo!](https://tic-tac-toe-redux-sam.firebaseapp.com "Demo")
 #Summary
 A Tic Tac Toe web app where you can play either locally in one browser window or online across two browser windows.
 
-###Things To Do
+###Additional Enhancements
 - Have hosting players enter a name for the game to be hosted
 - Allow players to see available sessions
 - Add Flash Messages
@@ -68,7 +74,7 @@ A Tic Tac Toe web app where you can play either locally in one browser window or
 
 ![Alt Text](http://cdn.infoq.com/statics_s1_20160414-0116/resource/articles/no-more-mvc-frameworks/en/resources/fig6.jpg "SAM Meta Model")
 
-##Awareness expressed by Actions, Model, Next Action Predicates, State, and State Representation
+##Awareness expressed by Actions, Model, Next Action Predicates, State, and State Representation of each other
 |Knows/Of|Action|Model|NAP|State|State Rep|
 |:---|:---|:---|:---|:---|:---|
 |Action| |present()|N/A|N/A|N/A|
@@ -79,7 +85,7 @@ A Tic Tac Toe web app where you can play either locally in one browser window or
 
 ##Terms
 - Action: Business Logic initiated by the View(State Representation) or NAP that can perform side effects as part of computing the dataset that is to be presented as an 'intent' to the Model.
-- Model: Holds the Application Model and is responsible for mutating itself based on it's current values, the Control State, and the presented dataset.
-- State(Control State): Indicates the current context of the Application. Is responsible for rendering State Representation and initiating NAPs with Model values, as well as mapping Actions to State Rep.
+- Model: Holds the Application Model and is responsible for mutating itself based on it's current values, the active Control State, and the presented datasets.
+- State(Control State): Indicates the current state of the Application.
 - NAP: Next Action Predicates are triggered based on the Control State and current Model Values given.
 - State Representation: Given Model Values and Actions based on the Control State, it should render a View that can initiate only 'allowable' Actions.
