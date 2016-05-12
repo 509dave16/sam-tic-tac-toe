@@ -1,5 +1,5 @@
 import { createAction, handleAction, handleActions } from 'redux-actions'
-import mutations from './../mutations';
+import mutations from '../model/mutations';
 const intents = mutations.intents;
 //const markGrid = createAction('MARK_GRID');
 const markGridAction = (present, cellIndex) => {

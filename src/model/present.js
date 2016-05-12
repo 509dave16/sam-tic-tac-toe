@@ -1,4 +1,4 @@
-import intentTypes from './intent-types';
+import intentTypes from './intents/intent-types';
 
 const present = (dataset, model) => {
   return dispatch => {

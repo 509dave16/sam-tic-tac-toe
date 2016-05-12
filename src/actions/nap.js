@@ -1,4 +1,4 @@
-import mutations from './../mutations';
+import mutations from '../model/mutations';
 import Firebase from 'firebase';
 
 const intents = mutations.intents;

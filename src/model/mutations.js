@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {createAction} from 'redux-actions';
 import {createAssignmentReducers} from './reducers/helpers/assignmentReducers';
 import {reducer as grid} from './reducers/grid';
-import intentConfigs from './intent-configs.js';
+import intentConfigs from './intents/intent-configs.js';
 import modelProperties from './model-properties.js';
 
 const setup = () => {

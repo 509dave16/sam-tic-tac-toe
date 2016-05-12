@@ -1,4 +1,4 @@
-import {generateSets, checkSets} from '../helpers/square-grid';
+import {generateSets, checkSets} from './helpers/square-grid';
 import { handleActions } from 'redux-actions';
 
 const INITIALIZE_GRID = (state, action) => {

@@ -18,7 +18,7 @@ const {
   FINISHED
 } = intentTypes;
 
-import modelProperties from './model-properties.js';
+import modelProperties from '../model-properties.js';
 const {
   gameType,
   gameStatus,

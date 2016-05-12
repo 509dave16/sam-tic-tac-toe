@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
-import  mutations  from './mutations.js'
-import present from './present.js'
+import  mutations  from './model/mutations.js'
+import present from './model/present.js'
 import nap from './nap.js'
 import DevTools from './components/DevTools';
 
