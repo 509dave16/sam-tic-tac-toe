@@ -1,11 +1,11 @@
-import { createStore, combineReducers } from 'redux'
-import app from './reducers.js'
-import present from './present.js'
+import { createStore } from 'redux'
+import  mutations  from './model/mutations.js'
+import present from './model/present.js'
 import nap from './nap.js'
 import DevTools from './components/DevTools';
 
 const createModel = () => {
-  const store = createStore(app, undefined, DevTools.instrument());
+  const store = createStore(mutations.reducers, undefined, DevTools.instrument());
   const mergeStateToPresent = dataset => {
     present(dataset, store.getState())(store.dispatch);
     nap(store.getState())(mergeStateToPresent);

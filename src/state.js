@@ -1,5 +1,4 @@
 const state = {};
-//TODO Attach pure functions to 'state' Object that resolve whether a particular Control State is true or false
 state.initialize = model => !model.grid.initialized;
 state.startLocalGame = model => model.gameType === 'Local Game' && model.turn === '' && !model.turnSwitch;
 state.hostSession = model => model.gameType === 'Host Game' && !model.session;

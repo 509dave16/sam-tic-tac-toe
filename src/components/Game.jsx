@@ -36,6 +36,7 @@ export default ({
             !
           </h1>
         </div>
+        <DevTools />
       </div>
     </Provider>
   )

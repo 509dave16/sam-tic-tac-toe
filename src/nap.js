@@ -20,7 +20,6 @@ const controlStateToActions = {
 
 const nap = model => {
   return present => {
-    //TODO Create control flow structure for initiating automatic Actions based on current Control State
     for (const controlState in controlStateToActions) {
       if(state[controlState](model)) {
         const action = controlStateToActions[controlState];

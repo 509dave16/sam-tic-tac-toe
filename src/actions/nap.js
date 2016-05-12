@@ -1,65 +1,62 @@
-import { createAction, handleAction, handleActions } from 'redux-actions'
+import mutations from '../model/mutations';
 import Firebase from 'firebase';
+import {generateSquareGrid, markGrid} from '../model/helpers/square-grid';
 
+const intents = mutations.intents;
 
 function actions() {
   const firebase = new Firebase("https://glowing-fire-9042.firebaseio.com/");
   let firebaseSession = undefined;
 
-  const initializeGrid = createAction('INITIALIZE_GRID');
   const initializeGridAction = (model, present) => {
-    present(initializeGrid({}));
+    const grid = generateSquareGrid(model.grid.size);
+    const finishedGrid = Object.assign({}, model.grid, grid, {initialized: true});
+    present(intents.initializeGrid(finishedGrid));
   };
 
-  const localMarkGrid = createAction('LOCAL_MARK_GRID');
   const localMarkGridAction = (model, present) => {
-    const cellIndex = model.move;
-    const mark = model.turn;
-    present(localMarkGrid({cellIndex, mark, move: -1, turnSwitch: true}));
+    const { move, turn, grid } = model;
+    const updatedGrid = markGrid(grid, move, turn);
+    present(intents.markGrid(updatedGrid));
   };
 
   const onlineMarkGridAction = (model, present) => {
     const cellIndex = model.move;
     const mark = model.turn;
-    firebaseSession.child('move').set({cellIndex, mark});
+    const grid = model.grid;
+    firebaseSession.child('move').set({cellIndex, mark, grid});
   };
 
-
-  const hostSession = createAction('HOST_SESSION');
   const hostSessionAction = (model, present) => {
     firebase.child('sessions').push({status: 'Yayy!'})
       .then((firebaseRef) => {
         firebaseSession = firebaseRef;
         const session = firebaseSession.key();
         setupFirebaseHandlers(session,present);
-        present(hostSession({player: 'X', session, gameStatus: 'Waiting for player to join game!'}));
+        present(intents.hostSession(session));
       });
   };
   
-  const setShowJoinSessionForm = createAction('SET_SHOWJOINSESSIONFORM');
   const setShowJoinSessionFormAction = (model, present) => {
-    present(setShowJoinSessionForm({showJoinSessionForm: true}));
+    present(intents.showJoinSessionForm());
   };
 
-  const joinSession = createAction('JOIN_SESSION');
-  const wrongSession = createAction('WRONG_SESSION');
   const joinSessionAction = (model, present) => {
     const session = model.submittedSession;
     firebase.child('sessions').child(session).once('value', (snapshot) => {
       if (snapshot.exists()) {
         firebaseSession = firebase.child('sessions').child(session);
         setupFirebaseHandlers(session,present);
-        present(joinSession({session , submittedSession: '', showJoinSessionForm: false, player: 'O', turnSwitch: true}));
+        present(intents.joinSession(session));
       } else {
-        present(wrongSession({submittedSession: ''}));
+        present(intents.wrongSession());
       }
     });
   };
 
-  const localTurnSwitch = createAction('LOCAL_TURN_SWITCH');
   const localTurnSwitchAction = (model, present) => {
     const turn = switchTurn(model.turn);
-    present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`, turnSwitch: false}));
+    present(intents.turnSwitch(turn, `${turn}'s turn`));
   };
 
   const onlineTurnSwitchAction = (model, present) => {
@@ -67,20 +64,18 @@ function actions() {
     firebaseSession.child('turn').set(turn);
   };
 
-  const quit = createAction('QUIT');
   const localQuitAction = (model, present) => {
-    present(quit({}));
+    present(intents.quit());
   };
   
   const onlineQuitAction = (model, present) => {
     firebaseSession.child('status').set('Quit', (error)=> {
-      firebase.child('sessions').child(session).remove();
+      firebase.child('sessions').child(model.session).remove();
     });
   };
 
-  const restart = createAction('RESTART');
   const localRestartAction = (model, present) => {
-    present(restart({turnSwitch: true}));
+    present(intents.restart());
   };
 
   const onlineRestartAction = (model, present) => {
@@ -90,30 +85,29 @@ function actions() {
     });
   };
 
-  const finished = createAction('FINISHED');
   const finishedAction = (model, present) => {
     const gameStatus = model.grid.winner ? `${model.turn} won!` : `It's a Draw!`;
-    present(finished({gameStatus, done: true}));
+    present(intents.finished(gameStatus));
   };
 
-  const startLocalGame = createAction('START_LOCAL_GAME');
   const startLocalGameAction = (model, present) => {
-    present(startLocalGame({turnSwitch: true}));
+    present(intents.startLocalGame());
   };
 
   const setupFirebaseHandlers = (session, present) => {
     firebaseSession.child('move').on('value', (snapshot) => {
       const move = snapshot.val();
       if (move) {
-        const {cellIndex, mark} = move;
-        present(localMarkGrid({cellIndex, mark, move: -1, turnSwitch: true}));
+        const {cellIndex, mark, grid} = move;
+        const updatedGrid = markGrid(grid, cellIndex, mark);
+        present(intents.markGrid(updatedGrid));
       }
     });
 
     firebaseSession.child('turn').on('value', (snapshot) => {
       const turn = snapshot.val();
       if (turn) {
-        present(localTurnSwitch({turn, gameStatus: `${turn}'s turn`, turnSwitch: false }));
+        present(intents.turnSwitch(turn, `${turn}'s turn`));
       }
     });
 
@@ -122,10 +116,10 @@ function actions() {
       if (status) {
         switch (status) {
           case('Quit'):
-            present(quit({}));
+            present(intents.quit());
             break;
           case('Restart'):
-            present(restart({turnSwitch: true}));
+            present(intents.restart());
             break;
         }
       }
@@ -133,7 +127,7 @@ function actions() {
 
     firebase.child('sessions').on('child_removed', (snapshot) => {
       if(snapshot.key() === session) {
-        present(defaultValue({}));
+        present(intents.quit());
       }
     });
 
@@ -163,13 +157,6 @@ function actions() {
 function switchTurn(turn) {
   return turn !== '' ? (turn === 'X' ? 'O' : 'X') : (Math.random() > 0.5 ? 'X' : 'O');
 }
-
-function sleep(milliSeconds){
-  var startTime = new Date().getTime(); // get the current time
-  while (new Date().getTime() < startTime + milliSeconds); // hog cpu
-}
-
-
 
 const actionsToCall = actions();
 export default actionsToCall;
