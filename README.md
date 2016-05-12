@@ -74,6 +74,8 @@ A Tic Tac Toe web app where you can play either locally in one browser window or
 
 ![Alt Text](http://cdn.infoq.com/statics_s1_20160414-0116/resource/articles/no-more-mvc-frameworks/en/resources/fig6.jpg "SAM Meta Model")
 
+**NOTE**: The information below is my brief interpretation of the SAM pattern. More accurate information and examples can be found at http://sam.js.org
+
 ##Awareness expressed by Actions, Model, Next Action Predicates, State, and State Representation of each other
 |Knows/Of|Action|Model|NAP|State|State Rep|
 |:---|:---|:---|:---|:---|:---|
