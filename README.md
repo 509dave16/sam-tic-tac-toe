@@ -1,5 +1,5 @@
 [Summary](#summary)
-
+[Tersm](#terms)
 #SAM Tic Tac Toe
 
 This is a Tic Tac Toe implementation using the [SAM](http://sam.js.org/ "SAM") pattern along with React, Redux, Firebase, and Webpack. It is based off of a SAM Redux sample implemented by [gunar](https://github.com/gunar/sam-redux "SAM Redux").
