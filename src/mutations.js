@@ -9,19 +9,18 @@ const setup = () => {
   const reducerConfigs = {};
   const intents = {};
   intentConfigs.map((intent) => {
-    const {name, intentType, defaultPayloadValues, dynamicPayloadValues} = intent;
+    const {name, intentType, payloadModelProperties, payloadCreator} = intent;
     //Determine assignment actions for each model property
-    for (const property in defaultPayloadValues) {
+    payloadModelProperties.map((property) => {
       if (modelProperties.hasOwnProperty(property)) {
         reducerConfigs[property] = reducerConfigs[property] ? reducerConfigs[property] : { intentTypes: [], defaultValue: modelProperties[property]};
         reducerConfigs[property].intentTypes.push(intentType);
       }
-    }
+    });
 
     //Setup action intents
     intents[name] = createAction(intentType, (...args) => {
-      const payload = dynamicPayloadValues(...args);
-      return Object.assign({}, defaultPayloadValues, payload);
+      return payloadCreator(...args);
     });
   });
 
