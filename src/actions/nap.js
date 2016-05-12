@@ -5,7 +5,7 @@ import {generateSquareGrid, markGrid} from '../model/helpers/square-grid';
 const intents = mutations.intents;
 
 function actions() {
-  const firebase = new Firebase("https://glowing-fire-9042.firebaseio.com/");
+  const firebase = new Firebase("https://tic-tac-toe-redux-sam.firebaseio.com");
   let firebaseSession = undefined;
 
   const initializeGridAction = (model, present) => {
