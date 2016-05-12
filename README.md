@@ -4,7 +4,7 @@
 This is a Tic Tac Toe implementation using the [SAM](http://sam.js.org/ "SAM") pattern along with React, Redux, Firebase, and Webpack. It is based off of a SAM Redux sample implemented by [gunar](https://github.com/gunar/sam-redux "SAM Redux").
 
 #Table Of Contents
-[Demo](#demo)
+- [Demo](#demo)
 - [Summary](#summary)
 - [Additional Enhancements](#additional-enhancements)
 - [Usage](#usage)
@@ -87,5 +87,6 @@ A Tic Tac Toe web app where you can play either locally in one browser window or
 - Action: Business Logic initiated by the View(State Representation) or NAP that can perform side effects as part of computing the dataset that is to be presented as an 'intent' to the Model.
 - Model: Holds the Application Model and is responsible for mutating itself based on it's current values, the active Control State, and the presented datasets.
 - State(Control State): Indicates the current state of the Application.
-- NAP: Next Action Predicates are triggered based on the Control State and current Model Values given.
+- NAP: Next Action Predicates are triggered based on the Control State and should execute an Action.
 - State Representation: Given Model Values and Actions based on the Control State, it should render a View that can initiate only 'allowable' Actions.
+- render: A function called by the Model's 'present' function after mutations are done that should in turn pass along the Model Values to the State Representation and NAP in order for the View to be rendered and Actions to be triggered by NAP.
