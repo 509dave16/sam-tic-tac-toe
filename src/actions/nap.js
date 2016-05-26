@@ -1,8 +1,6 @@
-import mutations from '../model/mutations';
+import intents from '../model/intents';
 import Firebase from 'firebase';
 import {generateSquareGrid, markGrid} from '../model/helpers/square-grid';
-
-const intents = mutations.intents;
 
 function actions() {
   const firebase = new Firebase("https://tic-tac-toe-redux-sam.firebaseio.com");

@@ -1,4 +1,4 @@
-const properties = {
+export default {
   grid: { cells: [], cellSets: [], sets: [], finished: false, winner: false, movesTaken: 0, initialized: false, size: 3},
   gameType: '',
   gameStatus: 'Please select a game mode!',
@@ -13,4 +13,3 @@ const properties = {
   restart: false,
   done: false
 };
-export default properties;

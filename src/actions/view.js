@@ -1,5 +1,4 @@
-import mutations from '../model/mutations';
-const intents = mutations.intents;
+import intents from '../model/intents.js';
 
 const markGridAction = (present, cellIndex) => {
   present(intents.initiateMarkGrid(cellIndex));
