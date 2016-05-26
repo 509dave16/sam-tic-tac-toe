@@ -8,26 +8,22 @@ const setup = () => {
   const reducerConfigs = {};
   const intents = {};
   intentConfigs.map((intent) => {
-    const {name, intentType, payloadModelProperties, payloadCreator} = intent;
+    const {name, intentType, payloadCreator} = intent;
     //Determine assignment actions for each model property
-    payloadModelProperties.map((property) => {
-      if (modelProperties.hasOwnProperty(property)) {
-        reducerConfigs[property] = reducerConfigs[property] ? reducerConfigs[property] : { intentTypes: [], defaultValue: modelProperties[property]};
-        reducerConfigs[property].intentTypes.push(intentType);
+    Object.keys(payloadCreator()).map((property) => {
+      if (!modelProperties.hasOwnProperty(property)) {
+        throw `${property} does not exist on the model! Please fix the payloadCreator for the intent configuration of type: ${intentType}!`;
       }
+      reducerConfigs[property] = reducerConfigs[property] ? reducerConfigs[property] : { intentTypes: [], defaultValue: modelProperties[property]};
+      reducerConfigs[property].intentTypes.push(intentType);
     });
-
     //Setup action intents
-    intents[name] = createAction(intentType, (...args) => {
-      return payloadCreator(...args);
-    });
+    intents[name] = createAction(intentType, payloadCreator);
   });
-
-  const assignmentReducers = createAssignmentReducers(reducerConfigs);
 
   return {
     intents,
-    reducers: combineReducers(assignmentReducers)
+    reducers: combineReducers(createAssignmentReducers(reducerConfigs))
   }
 };
 
