@@ -8,5 +8,5 @@ const mapStoreToProps = (store, ownProps) => {
     clickHandler: (cellIndex) => ownProps.actions.markGridAction(cellIndex)
   };
 };
-const GameType = connect(mapStoreToProps)(Grid);
-export default GameType;
+const GameBoard = connect(mapStoreToProps)(Grid);
+export default GameBoard;
