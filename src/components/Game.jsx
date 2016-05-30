@@ -10,18 +10,18 @@ import styles from './Game.scss';
 
 export default ({
   store,
-  present
+  actions
 }) => {
   return (
     <Provider store={store}>
       <div className={`${styles.rowCentered}`}>
         <div className={`${styles.container} ${styles.columnCentered}`}>
           <h1 className={`${styles.mainHeader}`}>Tic Tac Toe</h1>
-          <GameType present={present} buttons={['Host Game', 'Join Game', 'Local Game']}/>
-          <JoinGameForm present={present}/>
+          <GameType actions={actions} buttons={['Host Game', 'Join Game', 'Local Game']}/>
+          <JoinGameForm actions={actions}/>
           <StatusLabels />
-          <GameBoard present={present}/>
-          <GameButtons present={present}/>
+          <GameBoard actions={actions}/>
+          <GameButtons actions={actions}/>
           <h1 className={styles.attributionFooter}>
             Made with
             <a href="https://facebook.github.io/react/" target="_blank">
